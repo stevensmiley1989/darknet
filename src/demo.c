@@ -173,8 +173,9 @@ void demo(char *cfgfile, char *weightfile, float thresh, float hier_thresh, int 
         cap = get_capture_video_stream(filename);
         demo_skip_frame = is_live_stream(filename);
     }else{
-        printf("Webcam index: %d\n", cam_index);
-        cap = get_capture_webcam(cam_index);
+        printf("Webcam index: %d\n", cam_index); 
+        //cap = get_capture_webcam(cam_index); //sjs
+        cap=get_capture_webcam(cam_index,net.h,net.w);
         demo_skip_frame = true;
     }
 
@@ -344,12 +345,12 @@ void demo(char *cfgfile, char *weightfile, float thresh, float hier_thresh, int 
             }
 
             while (custom_atomic_load_int(&run_detect_in_thread)) {
-                if(avg_fps > 50) this_thread_yield();
+                if(avg_fps > 180) this_thread_yield();
                 else this_thread_sleep_for(thread_wait_ms);   // custom_join(detect_thread, 0);
             }
             if (!benchmark) {
                 while (custom_atomic_load_int(&run_fetch_in_thread)) {
-                    if (avg_fps > 50) this_thread_yield();
+                    if (avg_fps > 180) this_thread_yield();
                     else this_thread_sleep_for(thread_wait_ms);   // custom_join(fetch_thread, 0);
                 }
                 free_image(det_s);

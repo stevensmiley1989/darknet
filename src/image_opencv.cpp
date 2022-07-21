@@ -599,14 +599,14 @@ extern "C" cap_cv* get_capture_video_stream(const char *path) {
     return (cap_cv*)cap;
 }
 // ----------------------------------------
-
-extern "C" cap_cv* get_capture_webcam(int index)
+//extern "C" cap_cv* get_capture_webcam(int index) //edit sjs
+extern "C" cap_cv* get_capture_webcam(int index,int h, int w)
 {
     cv::VideoCapture* cap = NULL;
     try {
         cap = new cv::VideoCapture(index);
-        //cap->set(CV_CAP_PROP_FRAME_WIDTH, 1280);
-        //cap->set(CV_CAP_PROP_FRAME_HEIGHT, 960);
+        if (w) cap->set(cv::CAP_PROP_FRAME_WIDTH, w); //edit sjs
+        //if (h) cap->set(cv::CAP_PROP_FRAME_HEIGHT, h); //edit sjs
     }
     catch (...) {
         cerr << " OpenCV exception: Web-camera " << index << " can't be opened! \n";

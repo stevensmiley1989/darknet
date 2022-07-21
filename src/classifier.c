@@ -1039,7 +1039,7 @@ void threat_classifier(char *datacfg, char *cfgfile, char *weightfile, int cam_i
     }
     else {
         //cap = cvCaptureFromCAM(cam_index);
-        cap = get_capture_webcam(cam_index);
+        cap = get_capture_webcam(cam_index,net.h,net.w); //edit sjs
     }
 
     int classes = option_find_int(options, "classes", 2);
@@ -1178,7 +1178,7 @@ void gun_classifier(char *datacfg, char *cfgfile, char *weightfile, int cam_inde
     }
     else {
         //cap = cvCaptureFromCAM(cam_index);
-        cap = get_capture_webcam(cam_index);
+        cap = get_capture_webcam(cam_index, net.h,net.w); //sjs
     }
 
     int classes = option_find_int(options, "classes", 2);
@@ -1262,7 +1262,7 @@ void demo_classifier(char *datacfg, char *cfgfile, char *weightfile, int cam_ind
     if(filename){
         cap = get_capture_video_stream(filename);
     }else{
-        cap = get_capture_webcam(cam_index);
+        cap = get_capture_webcam(cam_index,net.h,net.w); //edit sjs
     }
 
     int classes = option_find_int(options, "classes", 2);

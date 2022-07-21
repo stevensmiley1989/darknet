@@ -24,7 +24,7 @@ void demo_art(char *cfgfile, char *weightfile, int cam_index)
     srand(2222222);
     cap_cv * cap;
 
-    cap = get_capture_webcam(cam_index);
+    cap = get_capture_webcam(cam_index,net.h,net.w); //edit sjs
 
     char *window = "ArtJudgementBot9000!!!";
     if(!cap) error("Couldn't connect to webcam.", DARKNET_LOC);
